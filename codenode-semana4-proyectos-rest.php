@@ -86,3 +86,32 @@ document.addEventListener("DOMContentLoaded", function() {
 }
 
 add_shortcode('codenode_proyectos', 'codenode_s4_mostrar_proyectos_shortcode');
+
+/**
+ * Endpoint opcional: devuelve solo los títulos de los proyectos
+ * Ruta: /wp-json/codenode/v1/proyectos
+ */
+function codenode_s4_registrar_ruta_proyectos() {
+    register_rest_route('codenode/v1', '/proyectos', array(
+        'methods'  => 'GET',
+        'callback' => 'codenode_s4_obtener_titulos_proyectos',
+        'permission_callback' => '__return_true'
+    ));
+}
+add_action('rest_api_init', 'codenode_s4_registrar_ruta_proyectos');
+
+function codenode_s4_obtener_titulos_proyectos() {
+    $proyectos = get_posts(array(
+        'post_type'      => 'proyecto',
+        'posts_per_page' => -1,
+        'post_status'    => 'publish'
+    ));
+
+    $titulos = array();
+
+    foreach ($proyectos as $proyecto) {
+        $titulos[] = $proyecto->post_title;
+    }
+
+    return rest_ensure_response($titulos);
+}

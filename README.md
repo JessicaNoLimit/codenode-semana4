@@ -114,6 +114,54 @@ La página **Proyectos API** muestra los proyectos almacenados en WordPress cons
 
 ---
 
+### Endpoint personalizado (Reto opcional)
+
+Como mejora adicional se implementó un endpoint personalizado en la REST API utilizando register_rest_route().
+
+Ruta creada:
+
+/wp-json/codenode/v1/proyectos
+
+Este endpoint devuelve únicamente los títulos de los proyectos en un array JSON limpio, en lugar de utilizar la respuesta completa de la REST API estándar de WordPress.
+
+Ejemplo de respuesta
+[
+ "Boda balinesa en jardín privado",
+ "Boda ibicenca frente al mar",
+ "Boda tradicional en pazo gallego"
+]
+Estructura del plugin
+
+El plugin se encarga de:
+
+Registrar el Custom Post Type proyecto
+
+Permitir su acceso desde la REST API
+
+Crear un endpoint personalizado
+
+Devolver datos simplificados en formato JSON
+
+### Mejoras adicionales en la web
+
+Durante la práctica también se realizaron mejoras en la coherencia general del sitio Aura Wedding Planner:
+
+Reorganización del menú de navegación
+
+Mejora de la estructura de páginas
+
+Integración de:
+
+servicios
+
+formulario de presupuesto
+
+tienda WooCommerce
+
+formulario de contacto
+
+Ajustes visuales para mantener una línea estética más coherente
+
 ## Autor
 
 Jesica Serrano
